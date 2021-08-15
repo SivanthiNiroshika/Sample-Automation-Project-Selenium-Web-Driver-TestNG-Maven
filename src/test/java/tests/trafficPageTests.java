@@ -18,14 +18,14 @@ public class trafficPageTests extends basePage
     public void setup() throws Exception {
 
         configProperties cp=new configProperties();
-        driver=cp.setupBrowser(basePage.browser);
+        driver=cp.setupBrowser();
         trafficPage.goToTrafficPage(driver);
     }
 
 
 
     @Test
-    public void verifyAcceptaceCriteria_7()
+    public void verifyAcceptanceCriteria_7()
     {
 
         //click on traffic history 2018 and expand all months

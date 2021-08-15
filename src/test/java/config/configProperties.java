@@ -14,9 +14,13 @@ public class configProperties extends pages.basePage
 
     WebDriver driver;
 
+    //Define the browser which is going to execute all tests
+    //values can be set are : chrome or firefox or Edge
+    public static String browser="chrome";
+
     @BeforeTest
     //Select the browser that you need to execute the testcases
-    public WebDriver setupBrowser(String browser) throws Exception{
+    public WebDriver setupBrowser() throws Exception{
         //Check if parameter passed from TestNG is 'firefox'
         if(browser.equalsIgnoreCase("firefox")){
             //create firefox instance

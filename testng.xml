@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="C:/IE/IE-Automation-Project">
+        <classes>
+            <class name="tests.homepageTests">
+                <methods>
+                    <include name="verifyAcceptanceCriteria_1" />
+                    <include name="verifyAcceptanceCriteria_2" />
+                    <include name="verifyAcceptanceCriteria_3" />
+                    <include name="verifyAcceptanceCriteria_4" />
+                    <include name="verifyAcceptanceCriteria_5" />
+                </methods>
+            </class>
+            <class name="tests.trafficPageTests">
+                <methods>
+                    <include name="verifyAcceptanceCriteria_7" />
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

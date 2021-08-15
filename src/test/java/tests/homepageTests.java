@@ -16,6 +16,7 @@ import pages.homePage;
 import org.testng.reporters.*;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 
 public class homepageTests extends basePage
@@ -29,17 +30,18 @@ public class homepageTests extends basePage
 
         configProperties cp=new configProperties();
 
-        driver=cp.setupBrowser(basePage.browser);
+        driver=cp.setupBrowser();
+        driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
+
         homePage.goToHome(driver);
     }
 
 
 
     @Test
-    public void verifyAcceptaceCriteria_1() throws Exception {
+    public void verifyAcceptanceCriteria_1() throws Exception {
 
-        //create homePage Object
-        //homePage hp = new homePage();
+
         //Verify homePage Logo is displayed
         homePage.homePageLogo(driver).isDisplayed();
 
@@ -48,7 +50,7 @@ public class homepageTests extends basePage
 
 
     @Test
-    public void verifyAcceptaceCriteria_2() {
+    public void verifyAcceptanceCriteria_2() {
 
 
         //clear the searchbox in the Home page
@@ -58,17 +60,18 @@ public class homepageTests extends basePage
 
         //wait until all elements are visible
         WebDriverWait wait = new WebDriverWait(driver, 30);
-        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.className("acp")));
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector("#search_form_homepage > div.search__autocomplete > div.acp-wrap.js-acp-wrap")));
 
         List<WebElement> list = driver.findElements(By.className("acp"));
 
         System.out.println("Number of search suggestions showed in Auto Suggest List ::" + list.size());
         Assert.assertEquals( list.size(),10);
+        driver.navigate().refresh();
 
     }
 
     @Test
-    public void verifyAcceptaceCriteria_3() {
+    public void verifyAcceptanceCriteria_3() {
 
 
         //clear the searchbox in the Home page
@@ -92,43 +95,47 @@ public class homepageTests extends basePage
 
 
     @Test
-    public void verifyAcceptaceCriteria_4()
+    public void verifyAcceptanceCriteria_4()
     {
 
         //click on hambuger menu
         homePage.menu(driver).click();
-        WebDriverWait wait = new WebDriverWait(driver, 50);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Themes")));
 
         //verify themes link is shown
         homePage.theme(driver).isDisplayed();
+        driver.navigate().refresh();
 
     }
 
 
     @Test
-    public void verifyAcceptaceCriteria_5()
+    public void verifyAcceptanceCriteria_5()
     {
         //get the current background color of the page
         String bckgclr1 =homePage.pageBackground(driver).getCssValue("background-color");
         System.out.println("old background colour is :"+bckgclr1);
 
+
         //click on hamburger menu
         homePage.menu(driver).click();
-        WebDriverWait wait = new WebDriverWait(driver, 50);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Themes")));
 
         //click on themes link
         homePage.theme(driver).click();
+
         //select and click on dark mode to change the background color to dark mode
         homePage.darkBackgroundColor(driver).click();
+
+        driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
 
         //get the current background color of the page
         String bckgclr2 = homePage.background(driver).getCssValue("background-color");
         System.out.println("new background colour is:"+bckgclr2);
+        driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
 
-        //verify click on the themes link then click on the dark mode theme button Then the page background should change colour
+
+       //verify click on the themes link then click on the dark mode theme button Then the page background should change colour
         Assert.assertNotEquals(bckgclr1, bckgclr2);
+        driver.navigate().refresh();
     }
 
 

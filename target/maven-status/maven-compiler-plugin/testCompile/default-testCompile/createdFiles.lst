@@ -1,0 +1,6 @@
+pages\homePage.class
+tests\homepageTests.class
+tests\trafficPageTests.class
+config\configProperties.class
+pages\trafficPage.class
+pages\basePage.class
