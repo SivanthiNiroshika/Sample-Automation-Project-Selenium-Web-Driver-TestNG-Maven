@@ -1,8 +1,9 @@
 # IE-Automation-Project
 IE-Automation-Test-Exercise
-
 This Automation Project contains test scripts written for the Home Page and Traffic Page.
 There are four key segments in the framework.
+
+
 01.**src/test/java/config package**- this contains all configuration information.
 
 02.**src/test/java/pages package**-this contains locators and common methods relevant for the page
@@ -11,6 +12,10 @@ There are four key segments in the framework.
 
 04.**C:\IE\IE-Automation-Project\test-output** - this contains all reports generated after test execution
 
+
+
+
+
 **Concepts Included**
 
 Dependency injection
@@ -18,6 +23,9 @@ Dependency injection
 Page Object pattern
 
 Common web page interaction methods
+
+
+
 
 
 **Tools**
@@ -29,6 +37,10 @@ TestNG
 Selenium Webdriver
 
 
+
+
+
+
 **Requirements**
 
 In order to utilise this project you need to have the following installed locally:
@@ -36,6 +48,10 @@ In order to utilise this project you need to have the following installed locall
 Chrome Version 92
 
 Java JDK 16
+
+
+
+
 
 
 **Test Execution**
