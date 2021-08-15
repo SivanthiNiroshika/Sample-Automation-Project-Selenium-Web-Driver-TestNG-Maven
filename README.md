@@ -14,24 +14,34 @@ There are four key segments in the framework.
 **Concepts Included**
 
 Dependency injection
+
 Page Object pattern
+
 Common web page interaction methods
 
 
 **Tools**
+
 Maven
+
 TestNG
+
 Selenium Webdriver
 
 
 **Requirements**
+
 In order to utilise this project you need to have the following installed locally:
+
 Chrome Version 92
+
 Java JDK 16
 
 
 **Test Execution**
+
 01.Run the C:\IE\IE-Automation-Project\testng.xml file
+
 Tester can configure the testng.xml file by including tests required to run.
 
 
