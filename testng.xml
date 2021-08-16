@@ -10,6 +10,7 @@
                     <include name="verifyAcceptanceCriteria_3" />
                     <include name="verifyAcceptanceCriteria_4" />
                     <include name="verifyAcceptanceCriteria_5" />
+                    <include name="verifyAcceptanceCriteria_6" />
                 </methods>
             </class>
             <class name="tests.trafficPageTests">
