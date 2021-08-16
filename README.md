@@ -62,5 +62,6 @@ Tester can configure the testng.xml file by including tests required to run.
 
 
 
-
+Notes
+*AC-6 script is not with the correct locator. Need to add the appropriate locator.
 
