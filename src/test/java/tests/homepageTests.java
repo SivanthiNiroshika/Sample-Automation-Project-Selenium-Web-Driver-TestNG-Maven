@@ -19,23 +19,22 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 
-public class homepageTests extends basePage
-{
+public class homepageTests extends basePage {
 
 
     WebDriver driver;
+
     @BeforeTest
     public void setup() throws Exception {
 
 
-        configProperties cp=new configProperties();
+        configProperties cp = new configProperties();
 
-        driver=cp.setupBrowser();
+        driver = cp.setupBrowser();
         driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
 
         homePage.goToHome(driver);
     }
-
 
 
     @Test
@@ -65,7 +64,7 @@ public class homepageTests extends basePage
         List<WebElement> list = driver.findElements(By.className("acp"));
 
         System.out.println("Number of search suggestions showed in Auto Suggest List ::" + list.size());
-        Assert.assertEquals( list.size(),10);
+        Assert.assertEquals(list.size(), 10);
         driver.navigate().refresh();
 
     }
@@ -82,10 +81,10 @@ public class homepageTests extends basePage
         //wait until all elements are visible
         WebDriverWait wait = new WebDriverWait(driver, 50);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//form[@id='search_form_homepage']/div[2]/div/div/span")));
-        String actual=driver.findElement(By.xpath("//form[@id='search_form_homepage']/div[2]/div/div/span")).getText();
+        String actual = driver.findElement(By.xpath("//form[@id='search_form_homepage']/div[2]/div/div/span")).getText();
 
-        System.out.println("The Actual Search Suggestion is :"+actual);
-        String expectedSearchSuggestion="supercalafragalisticexpialadoshus";
+        System.out.println("The Actual Search Suggestion is :" + actual);
+        String expectedSearchSuggestion = "supercalafragalisticexpialadoshus";
 
         //verify the expected search suggestion is shown in actual results
         Assert.assertEquals(actual, expectedSearchSuggestion);
@@ -95,8 +94,7 @@ public class homepageTests extends basePage
 
 
     @Test
-    public void verifyAcceptanceCriteria_4()
-    {
+    public void verifyAcceptanceCriteria_4() {
 
         //click on hambuger menu
         homePage.menu(driver).click();
@@ -109,11 +107,10 @@ public class homepageTests extends basePage
 
 
     @Test
-    public void verifyAcceptanceCriteria_5()
-    {
+    public void verifyAcceptanceCriteria_5() {
         //get the current background color of the page
-        String bckgclr1 =homePage.pageBackground(driver).getCssValue("background-color");
-        System.out.println("old background colour is :"+bckgclr1);
+        String bckgclr1 = homePage.pageBackground(driver).getCssValue("background-color");
+        System.out.println("old background colour is :" + bckgclr1);
 
 
         //click on hamburger menu
@@ -129,48 +126,51 @@ public class homepageTests extends basePage
 
         //get the current background color of the page
         String bckgclr2 = homePage.background(driver).getCssValue("background-color");
-        System.out.println("new background colour is:"+bckgclr2);
+        System.out.println("new background colour is:" + bckgclr2);
         driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
 
 
-       //verify click on the themes link then click on the dark mode theme button Then the page background should change colour
+        //verify click on the themes link then click on the dark mode theme button Then the page background should change colour
         Assert.assertNotEquals(bckgclr1, bckgclr2);
         driver.navigate().refresh();
     }
 
 
-
     //AC6
     //Given I am on the homepage When I go to the homepage and type then click the maginifying glass Then I should get 10 results on the results page
 
-
-    // String[] strKeywords = new String[] {"Back to the future","BMX Bandits","Rocky IV","Short Circuit","The Terminator","Ferries Bueller's Day off"};
-
-
-//      for(int i =0 ;i<strKeywords.length;i++)
-//      {
-
-//
-//      driver.findElement(By.id("search_form_input_homepage")).clear();
-//      driver.findElement(By.id("search_form_input_homepage")).sendKeys(strKeywords[0]);
-//      WebDriverWait wait = new WebDriverWait(driver, 50);
-//
-//      WebDriverWait wait1 = new WebDriverWait(driver, 70);
-//
-//      wait1.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//form[@id='search_form_homepage']/div[2]/div/div/span")));
-////
-//      List<WebElement> list = driver.findElements(By.xpath("//form[@id='search_form_homepage']/div[2]/div/div"));
-//
-//
-//       System.out.println(list.get(0));
-//
-//
-//      System.out.println("Auto Suggest List ::" + list.size());
+    @Test
+    public void verifyAcceptanceCriteria_6() {
+        String[] strKeywords = new String[]{"Back to the future", "BMX Bandits", "Rocky IV", "Short Circuit", "The Terminator", "Ferries Bueller's Day off"};
+        int []expectedResultsCount=new int[]{10,10,10,10,10,10};
+        int []actualResultsCount=new int[6];
+        for (int i = 0; i < strKeywords.length; i++) {
 
 
-//     }
+            //clear the searchbox in the Home page
+            homePage.homePageSearch(driver).clear();
+            //search the given word
+            homePage.homePageSearch(driver).sendKeys(strKeywords[i]);
+            driver.findElement(By.xpath("//INPUT[@id='search_button_homepage']")).click();
 
 
+            //wait until all elements are visible
+            WebDriverWait wait = new WebDriverWait(driver, 30);
+            wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"web_content_wrapper\"]/div[3]")));
+
+            List<WebElement> list = driver.findElements(By.xpath("//*[@id=\"web_content_wrapper\"]/div[3]"));
+            actualResultsCount[i]= list.size();
+            System.out.println("Number of search results for " + strKeywords[i] + " is :" + list.size());
+
+            homePage.goToHome(driver);
+
+
+        }
+
+
+        Assert.assertEquals(actualResultsCount,expectedResultsCount);
+
+    }
 
 
 }
