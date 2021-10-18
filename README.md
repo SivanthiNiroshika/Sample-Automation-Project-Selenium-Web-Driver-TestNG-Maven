@@ -1,6 +1,6 @@
-# IE-Automation-Project
-IE-Automation-Test-Exercise
-This Automation Project contains test scripts written for the Home Page and Traffic Page.
+# Automation-Project - Selenium Web Driver / TestNG / Maven
+
+This Automation Project contains test scripts written for the Home Page and Traffic Page of a website under test.
 There are four key segments in the framework.
 
 
@@ -56,7 +56,7 @@ Java JDK 16
 
 **Test Execution**
 
-01.Run the C:\IE\IE-Automation-Project\testng.xml file
+01.Run the testng.xml file
 
 Tester can configure the testng.xml file by including tests required to run.
 
